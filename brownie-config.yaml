@@ -1,0 +1,28 @@
+# exclude SafeMath when calculating test coverage
+# https://eth-brownie.readthedocs.io/en/v1.10.3/config.html#exclude_paths
+reports:
+  exclude_contracts:
+    - SafeMath
+dependencies:
+  - OpenZeppelin/openzeppelin-contracts@4.1.0
+  - OpenZeppelin/openzeppelin-contracts-upgradeable@4.4.0
+  - smartcontractkit/chainlink@1.0.1
+compiler:
+  solc:
+    remappings:
+      - '@openzeppelin=OpenZeppelin/openzeppelin-contracts@4.1.0'
+      - '@oz-upgradeable=OpenZeppelin/openzeppelin-contracts-upgradeable@4.4.0/contracts'
+      - '@chainlink=smartcontractkit/chainlink@1.0.1'
+# automatically fetch contract sources from Etherscan
+# autofetch_sources: True
+dotenv: .env
+networks:
+    default: bsc-test
+    # bsc-test:
+    #     cmd_settings: ${BROWNIE_DEV_PASSWORD}
+    #         unlock:
+    #             - 0xE17718b1db0127b342165842dE26474B9065e6Dc
+
+wallets:
+  from_key: ${PRIVATE_KEY}
+  from_mnemonic: ${MNEMONIC}
